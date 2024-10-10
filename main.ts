@@ -16,7 +16,9 @@ const handleWebProxyRedirect = async (_req: Request) => {
     return new Response(null, { status: 404 });
   }
   if (originUrlObj.pathname.length === 1) {
-    return new Response("Welcome to the Edge Web Proxy!");
+    return new Response(
+      "Welcome to the Edge Web Proxy! Put any URL you want to proxy in path, e.g. https://ewp.deno.dev/https://www.google.com/"
+    );
   }
 
   const targetUrl = originUrlObj.pathname.slice(1);
@@ -56,10 +58,7 @@ const handleWebProxyRedirect = async (_req: Request) => {
     const proxyRedirectLocation =
       proxyRedirectResponse.headers.get("Location")!;
 
-    // console.log("proxy redirect status", proxyRedirectResponse.status);
-    // console.log("proxy redirect location", proxyRedirectLocation);
-
-    return new Response("Hello, World!", {
+    return new Response("You should be soon redirected...", {
       status: 302,
       headers: { Location: proxyRedirectLocation },
     });
