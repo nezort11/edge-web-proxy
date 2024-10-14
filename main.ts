@@ -21,7 +21,7 @@ const handleWebProxyRedirect = async (_req: Request) => {
     );
   }
 
-  const targetUrl = originUrlObj.pathname.slice(1);
+  const targetUrl = originUrlObj.pathname.slice(1) + originUrlObj.search;
   // console.log("target url", targetUrl);
 
   const proxyPageResponse = await fetch(PROXY_URL);
